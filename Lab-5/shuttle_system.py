@@ -13,11 +13,13 @@ routes = {"R1": {"name": "Main Gate - Library", "trips": []},
 MIN_CAPACITY = 10
 DRIVERS = ["Prakash", "Leela", "Imran", "Tom"]
 
+
 def is_valid_count(passenger_count):
-    """Return True if passenger_count is a non-negative integer (not a bool)."""
+    """Return True if passenger_count is a non-negative int (not a bool)."""
     return (isinstance(passenger_count, int)
             and not isinstance(passenger_count, bool)
             and passenger_count >= 0)
+
 
 def add_trip_log(route_id, passenger_count, logs=None):
     """Record a trip's passenger count and return the trip log.
@@ -26,23 +28,27 @@ def add_trip_log(route_id, passenger_count, logs=None):
     A new log list is created per call unless one is passed in.
     """
     if not is_valid_count(passenger_count):
-        raise ValueError(f"invalid passenger count {passenger_count!r} for {route_id}")
+        raise ValueError(
+            f"invalid passenger count {passenger_count!r} for {route_id}")
     if logs is None:
         logs = []
     routes[route_id]["trips"].append(passenger_count)
     logs.append(f"{datetime.now()}: {route_id} carried {passenger_count}")
     return logs
 
+
 def remove_route(route_id):
     """Remove a route from the fleet."""
     del routes[route_id]
 
+
 def average_load(route_id):
-    """Return the average passengers per trip, or None if there are no trips."""
+    """Return the average passengers per trip, or None if no trips."""
     trips = routes[route_id]["trips"]
     if not trips:
         return None
     return sum(trips) / len(trips)
+
 
 def underused_routes():
     """Return the routes whose average load is below MIN_CAPACITY."""
@@ -53,12 +59,14 @@ def underused_routes():
             flagged.append(route_id)
     return flagged
 
+
 def assign_driver(route_id):
-    """Return the driver for a route from a fixed rota (same route, same driver)."""
+    """Return the route's driver from a fixed rota (same route each time)."""
     return DRIVERS[sorted(routes).index(route_id) % len(DRIVERS)]
 
+
 def sync_fleet_data(file="fleet.json"):
-    """Save the fleet to a JSON file and reload it, replacing routes in place."""
+    """Save the fleet to a JSON file and reload it into routes in place."""
     with open(file, "w", encoding="utf-8") as out:
         json.dump(routes, out)
     with open(file, encoding="utf-8") as src:
@@ -66,9 +74,12 @@ def sync_fleet_data(file="fleet.json"):
     routes.clear()
     routes.update(loaded)
 
+
 def main():
     """Run the shuttle tracker demo."""
-    for route_id, count in [("R1", 32), ("R1", 28), ("R2", 4), ("R2", -6), ("R3", "full")]:
+    sample_trips = [("R1", 32), ("R1", 28), ("R2", 4), ("R2", -6),
+                    ("R3", "full")]
+    for route_id, count in sample_trips:
         try:
             add_trip_log(route_id, count)
         except ValueError as err:
@@ -84,7 +95,9 @@ def main():
     if choice in routes:
         print("Trips on", choice, ":", routes[choice]["trips"])
     else:
-        print("Unknown route:", choice, "- available:", ", ".join(sorted(routes)))
+        print("Unknown route:", choice,
+              "- available:", ", ".join(sorted(routes)))
+
 
 if __name__ == "__main__":
     main()
