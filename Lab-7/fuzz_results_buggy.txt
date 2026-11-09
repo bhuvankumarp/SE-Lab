@@ -1,0 +1,424 @@
+============================= test session starts ==============================
+platform linux -- Python 3.11.18, pytest-9.2.0, pluggy-1.7.0
+rootdir: /home/user/se-lab/Lab-7
+plugins: hypothesis-6.170.15
+collected 9 items
+
+test_processor.py FFFFFF...                                              [100%]
+
+=================================== FAILURES ===================================
+______________________ test_parse_vitals_summary_no_crash ______________________
+  + Exception Group Traceback (most recent call last):
+  |   File "/home/user/se-lab/Lab-7/test_processor.py", line 41, in test_parse_vitals_summary_no_crash
+  |     @given(st.text() | st.none())
+  |                    ^^^
+  | ExceptionGroup: Hypothesis found 3 distinct failures. (3 sub-exceptions)
+  +-+---------------- 1 ----------------
+    | Traceback (most recent call last):
+    |   File "/home/user/se-lab/Lab-7/test_processor.py", line 45, in test_parse_vitals_summary_no_crash
+    |     result = parse_vitals_summary(s)
+    |              ^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/home/user/se-lab/Lab-7/processor.py", line 4, in parse_vitals_summary
+    |     spo2 = float(parts[1])
+    |                  ~~~~~^^^
+    | IndexError: list index out of range
+    | 
+    | During handling of the above exception, another exception occurred:
+    | 
+    | Traceback (most recent call last):
+    |   File "/home/user/se-lab/Lab-7/test_processor.py", line 47, in test_parse_vitals_summary_no_crash
+    |     assert False, f"parse_vitals_summary crashed on {s!r} with: {e!r}"
+    | AssertionError: parse_vitals_summary crashed on '0' with: IndexError('list index out of range')
+    | assert False
+    | Failing test case: test_parse_vitals_summary_no_crash(
+    |     s='0',
+    | )
+    +---------------- 2 ----------------
+    | Traceback (most recent call last):
+    |   File "/home/user/se-lab/Lab-7/test_processor.py", line 45, in test_parse_vitals_summary_no_crash
+    |     result = parse_vitals_summary(s)
+    |              ^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/home/user/se-lab/Lab-7/processor.py", line 3, in parse_vitals_summary
+    |     hr = float(parts[0])
+    |          ^^^^^^^^^^^^^^^
+    | ValueError: could not convert string to float: ''
+    | 
+    | During handling of the above exception, another exception occurred:
+    | 
+    | Traceback (most recent call last):
+    |   File "/home/user/se-lab/Lab-7/test_processor.py", line 47, in test_parse_vitals_summary_no_crash
+    |     assert False, f"parse_vitals_summary crashed on {s!r} with: {e!r}"
+    | AssertionError: parse_vitals_summary crashed on '' with: ValueError("could not convert string to float: ''")
+    | assert False
+    | Failing test case: test_parse_vitals_summary_no_crash(
+    |     s='',
+    | )
+    +---------------- 3 ----------------
+    | Traceback (most recent call last):
+    |   File "/home/user/se-lab/Lab-7/test_processor.py", line 45, in test_parse_vitals_summary_no_crash
+    |     result = parse_vitals_summary(s)
+    |              ^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/home/user/se-lab/Lab-7/processor.py", line 2, in parse_vitals_summary
+    |     parts = vitals_csv.split(',')
+    |             ^^^^^^^^^^^^^^^^
+    | AttributeError: 'NoneType' object has no attribute 'split'
+    | 
+    | During handling of the above exception, another exception occurred:
+    | 
+    | Traceback (most recent call last):
+    |   File "/home/user/se-lab/Lab-7/test_processor.py", line 47, in test_parse_vitals_summary_no_crash
+    |     assert False, f"parse_vitals_summary crashed on {s!r} with: {e!r}"
+    | AssertionError: parse_vitals_summary crashed on None with: AttributeError("'NoneType' object has no attribute 'split'")
+    | assert False
+    | Failing test case: test_parse_vitals_summary_no_crash(
+    |     s=None,
+    | )
+    +------------------------------------
+________________________ test_compute_patient_bmi_safe _________________________
+  + Exception Group Traceback (most recent call last):
+  |   File "/home/user/se-lab/Lab-7/test_processor.py", line 52, in test_compute_patient_bmi_safe
+  |     @given(st.text() | st.none())
+  |                    ^^^
+  | ExceptionGroup: Hypothesis found 3 distinct failures. (3 sub-exceptions)
+  +-+---------------- 1 ----------------
+    | Traceback (most recent call last):
+    |   File "/home/user/se-lab/Lab-7/test_processor.py", line 56, in test_compute_patient_bmi_safe
+    |     result = compute_patient_bmi(s)
+    |              ^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/home/user/se-lab/Lab-7/processor.py", line 11, in compute_patient_bmi
+    |     weight = float(w_str)
+    |              ^^^^^^^^^^^^
+    | ValueError: could not convert string to float: ''
+    | 
+    | During handling of the above exception, another exception occurred:
+    | 
+    | Traceback (most recent call last):
+    |   File "/home/user/se-lab/Lab-7/test_processor.py", line 58, in test_compute_patient_bmi_safe
+    |     assert False, f"compute_patient_bmi crashed on {s!r} with: {e!r}"
+    | AssertionError: compute_patient_bmi crashed on '/' with: ValueError("could not convert string to float: ''")
+    | assert False
+    | Failing test case: test_compute_patient_bmi_safe(
+    |     s='/',
+    | )
+    +---------------- 2 ----------------
+    | Traceback (most recent call last):
+    |   File "/home/user/se-lab/Lab-7/test_processor.py", line 56, in test_compute_patient_bmi_safe
+    |     result = compute_patient_bmi(s)
+    |              ^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/home/user/se-lab/Lab-7/processor.py", line 10, in compute_patient_bmi
+    |     w_str, h_str = bmi_string.split('/')
+    |     ^^^^^^^^^^^^
+    | ValueError: not enough values to unpack (expected 2, got 1)
+    | 
+    | During handling of the above exception, another exception occurred:
+    | 
+    | Traceback (most recent call last):
+    |   File "/home/user/se-lab/Lab-7/test_processor.py", line 58, in test_compute_patient_bmi_safe
+    |     assert False, f"compute_patient_bmi crashed on {s!r} with: {e!r}"
+    | AssertionError: compute_patient_bmi crashed on '' with: ValueError('not enough values to unpack (expected 2, got 1)')
+    | assert False
+    | Failing test case: test_compute_patient_bmi_safe(
+    |     s='',
+    | )
+    +---------------- 3 ----------------
+    | Traceback (most recent call last):
+    |   File "/home/user/se-lab/Lab-7/test_processor.py", line 56, in test_compute_patient_bmi_safe
+    |     result = compute_patient_bmi(s)
+    |              ^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/home/user/se-lab/Lab-7/processor.py", line 10, in compute_patient_bmi
+    |     w_str, h_str = bmi_string.split('/')
+    |                    ^^^^^^^^^^^^^^^^
+    | AttributeError: 'NoneType' object has no attribute 'split'
+    | 
+    | During handling of the above exception, another exception occurred:
+    | 
+    | Traceback (most recent call last):
+    |   File "/home/user/se-lab/Lab-7/test_processor.py", line 58, in test_compute_patient_bmi_safe
+    |     assert False, f"compute_patient_bmi crashed on {s!r} with: {e!r}"
+    | AssertionError: compute_patient_bmi crashed on None with: AttributeError("'NoneType' object has no attribute 'split'")
+    | assert False
+    | Failing test case: test_compute_patient_bmi_safe(
+    |     s=None,
+    | )
+    +------------------------------------
+__________________________ test_assign_ward_bed_safe ___________________________
+  + Exception Group Traceback (most recent call last):
+  |   File "/home/user/se-lab/Lab-7/test_processor.py", line 63, in test_assign_ward_bed_safe
+  |     @given(st.text() | st.none())
+  |                    ^^^
+  | ExceptionGroup: Hypothesis found 3 distinct failures. (3 sub-exceptions)
+  +-+---------------- 1 ----------------
+    | Traceback (most recent call last):
+    |   File "/home/user/se-lab/Lab-7/test_processor.py", line 67, in test_assign_ward_bed_safe
+    |     result = assign_ward_bed(s)
+    |              ^^^^^^^^^^^^^^^^^^
+    |   File "/home/user/se-lab/Lab-7/processor.py", line 24, in assign_ward_bed
+    |     bed_num = int(bed_str)
+    |               ^^^^^^^^^^^^
+    | ValueError: invalid literal for int() with base 10: ''
+    | 
+    | During handling of the above exception, another exception occurred:
+    | 
+    | Traceback (most recent call last):
+    |   File "/home/user/se-lab/Lab-7/test_processor.py", line 69, in test_assign_ward_bed_safe
+    |     assert False, f"assign_ward_bed crashed on {s!r} with: {e!r}"
+    | AssertionError: assign_ward_bed crashed on '-' with: ValueError("invalid literal for int() with base 10: ''")
+    | assert False
+    | Failing test case: test_assign_ward_bed_safe(
+    |     s='-',
+    | )
+    +---------------- 2 ----------------
+    | Traceback (most recent call last):
+    |   File "/home/user/se-lab/Lab-7/test_processor.py", line 67, in test_assign_ward_bed_safe
+    |     result = assign_ward_bed(s)
+    |              ^^^^^^^^^^^^^^^^^^
+    |   File "/home/user/se-lab/Lab-7/processor.py", line 17, in assign_ward_bed
+    |     ward, bed_str = allocation_code.strip().split('-')
+    |     ^^^^^^^^^^^^^
+    | ValueError: not enough values to unpack (expected 2, got 1)
+    | 
+    | During handling of the above exception, another exception occurred:
+    | 
+    | Traceback (most recent call last):
+    |   File "/home/user/se-lab/Lab-7/test_processor.py", line 69, in test_assign_ward_bed_safe
+    |     assert False, f"assign_ward_bed crashed on {s!r} with: {e!r}"
+    | AssertionError: assign_ward_bed crashed on '' with: ValueError('not enough values to unpack (expected 2, got 1)')
+    | assert False
+    | Failing test case: test_assign_ward_bed_safe(
+    |     s='',
+    | )
+    +---------------- 3 ----------------
+    | Traceback (most recent call last):
+    |   File "/home/user/se-lab/Lab-7/test_processor.py", line 67, in test_assign_ward_bed_safe
+    |     result = assign_ward_bed(s)
+    |              ^^^^^^^^^^^^^^^^^^
+    |   File "/home/user/se-lab/Lab-7/processor.py", line 17, in assign_ward_bed
+    |     ward, bed_str = allocation_code.strip().split('-')
+    |                     ^^^^^^^^^^^^^^^^^^^^^
+    | AttributeError: 'NoneType' object has no attribute 'strip'
+    | 
+    | During handling of the above exception, another exception occurred:
+    | 
+    | Traceback (most recent call last):
+    |   File "/home/user/se-lab/Lab-7/test_processor.py", line 69, in test_assign_ward_bed_safe
+    |     assert False, f"assign_ward_bed crashed on {s!r} with: {e!r}"
+    | AssertionError: assign_ward_bed crashed on None with: AttributeError("'NoneType' object has no attribute 'strip'")
+    | assert False
+    | Failing test case: test_assign_ward_bed_safe(
+    |     s=None,
+    | )
+    +------------------------------------
+____________________ test_parse_vitals_structured_no_crash _____________________
+
+parts = []
+
+    @FUZZ
+    @given(st.lists(number_text, min_size=0, max_size=5))
+    def test_parse_vitals_structured_no_crash(parts):
+        """'a,b,c' style input with random parts and part counts."""
+        s = ",".join(parts)
+        try:
+>           result = parse_vitals_summary(s)
+                     ^^^^^^^^^^^^^^^^^^^^^^^
+
+test_processor.py:83: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+vitals_csv = ''
+
+    def parse_vitals_summary(vitals_csv):
+        parts = vitals_csv.split(',')
+>       hr = float(parts[0])
+             ^^^^^^^^^^^^^^^
+E       ValueError: could not convert string to float: ''
+
+processor.py:3: ValueError
+
+During handling of the above exception, another exception occurred:
+
+    @FUZZ
+>   @given(st.lists(number_text, min_size=0, max_size=5))
+                   ^^^
+
+test_processor.py:78: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+parts = []
+
+    @FUZZ
+    @given(st.lists(number_text, min_size=0, max_size=5))
+    def test_parse_vitals_structured_no_crash(parts):
+        """'a,b,c' style input with random parts and part counts."""
+        s = ",".join(parts)
+        try:
+            result = parse_vitals_summary(s)
+        except Exception as e:  # pylint: disable=broad-except
+>           assert False, f"parse_vitals_summary crashed on {s!r} with: {e!r}"
+E           AssertionError: parse_vitals_summary crashed on '' with: ValueError("could not convert string to float: ''")
+E           assert False
+E           Failing test case: test_parse_vitals_structured_no_crash(
+E               parts=[],
+E           )
+
+test_processor.py:85: AssertionError
+_________________ test_compute_patient_bmi_structured_no_crash _________________
+  + Exception Group Traceback (most recent call last):
+  |   File "/home/user/se-lab/Lab-7/test_processor.py", line 90, in test_compute_patient_bmi_structured_no_crash
+  |     @given(st.lists(number_text, min_size=0, max_size=4))
+  |                    ^^^
+  | ExceptionGroup: Hypothesis found 5 distinct failures. (5 sub-exceptions)
+  +-+---------------- 1 ----------------
+    | Traceback (most recent call last):
+    |   File "/home/user/se-lab/Lab-7/test_processor.py", line 95, in test_compute_patient_bmi_structured_no_crash
+    |     result = compute_patient_bmi(s)
+    |              ^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/home/user/se-lab/Lab-7/processor.py", line 11, in compute_patient_bmi
+    |     weight = float(w_str)
+    |              ^^^^^^^^^^^^
+    | ValueError: could not convert string to float: ''
+    | 
+    | During handling of the above exception, another exception occurred:
+    | 
+    | Traceback (most recent call last):
+    |   File "/home/user/se-lab/Lab-7/test_processor.py", line 97, in test_compute_patient_bmi_structured_no_crash
+    |     assert False, f"compute_patient_bmi crashed on {s!r} with: {e!r}"
+    | AssertionError: compute_patient_bmi crashed on '/0' with: ValueError("could not convert string to float: ''")
+    | assert False
+    | Failing test case: test_compute_patient_bmi_structured_no_crash(
+    |     parts=['', '0'],
+    | )
+    +---------------- 2 ----------------
+    | Traceback (most recent call last):
+    |   File "/home/user/se-lab/Lab-7/test_processor.py", line 95, in test_compute_patient_bmi_structured_no_crash
+    |     result = compute_patient_bmi(s)
+    |              ^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/home/user/se-lab/Lab-7/processor.py", line 12, in compute_patient_bmi
+    |     height = float(h_str)
+    |              ^^^^^^^^^^^^
+    | ValueError: could not convert string to float: ''
+    | 
+    | During handling of the above exception, another exception occurred:
+    | 
+    | Traceback (most recent call last):
+    |   File "/home/user/se-lab/Lab-7/test_processor.py", line 97, in test_compute_patient_bmi_structured_no_crash
+    |     assert False, f"compute_patient_bmi crashed on {s!r} with: {e!r}"
+    | AssertionError: compute_patient_bmi crashed on '0/' with: ValueError("could not convert string to float: ''")
+    | assert False
+    | Failing test case: test_compute_patient_bmi_structured_no_crash(
+    |     parts=['0', ''],
+    | )
+    +---------------- 3 ----------------
+    | Traceback (most recent call last):
+    |   File "/home/user/se-lab/Lab-7/test_processor.py", line 100, in test_compute_patient_bmi_structured_no_crash
+    |     assert math.isfinite(result) and result > 0
+    | AssertionError: assert (True and 0.0 > 0)
+    |  +  where True = <built-in function isfinite>(0.0)
+    |  +    where <built-in function isfinite> = math.isfinite
+    | Failing test case: test_compute_patient_bmi_structured_no_crash(
+    |     parts=['0', '1'],
+    | )
+    +---------------- 4 ----------------
+    | Traceback (most recent call last):
+    |   File "/home/user/se-lab/Lab-7/test_processor.py", line 95, in test_compute_patient_bmi_structured_no_crash
+    |     result = compute_patient_bmi(s)
+    |              ^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/home/user/se-lab/Lab-7/processor.py", line 13, in compute_patient_bmi
+    |     bmi = weight / (height ** 2)
+    |           ~~~~~~~^~~~~~~~~~~~~~~
+    | ZeroDivisionError: float division by zero
+    | 
+    | During handling of the above exception, another exception occurred:
+    | 
+    | Traceback (most recent call last):
+    |   File "/home/user/se-lab/Lab-7/test_processor.py", line 97, in test_compute_patient_bmi_structured_no_crash
+    |     assert False, f"compute_patient_bmi crashed on {s!r} with: {e!r}"
+    | AssertionError: compute_patient_bmi crashed on '0/0' with: ZeroDivisionError('float division by zero')
+    | assert False
+    | Failing test case: test_compute_patient_bmi_structured_no_crash(
+    |     parts=['0', '0'],
+    | )
+    +---------------- 5 ----------------
+    | Traceback (most recent call last):
+    |   File "/home/user/se-lab/Lab-7/test_processor.py", line 95, in test_compute_patient_bmi_structured_no_crash
+    |     result = compute_patient_bmi(s)
+    |              ^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/home/user/se-lab/Lab-7/processor.py", line 10, in compute_patient_bmi
+    |     w_str, h_str = bmi_string.split('/')
+    |     ^^^^^^^^^^^^
+    | ValueError: not enough values to unpack (expected 2, got 1)
+    | 
+    | During handling of the above exception, another exception occurred:
+    | 
+    | Traceback (most recent call last):
+    |   File "/home/user/se-lab/Lab-7/test_processor.py", line 97, in test_compute_patient_bmi_structured_no_crash
+    |     assert False, f"compute_patient_bmi crashed on {s!r} with: {e!r}"
+    | AssertionError: compute_patient_bmi crashed on '' with: ValueError('not enough values to unpack (expected 2, got 1)')
+    | assert False
+    | Failing test case: test_compute_patient_bmi_structured_no_crash(
+    |     parts=[],
+    | )
+    +------------------------------------
+___________________ test_assign_ward_bed_structured_no_crash ___________________
+
+ward = 'ER', beds = []
+
+    @FUZZ
+    @given(st.sampled_from(["ER", "icu", "Gen", "PED", "XYZ", "", " ICU"]),
+           st.lists(number_text, min_size=0, max_size=3))
+    def test_assign_ward_bed_structured_no_crash(ward, beds):
+        """'WARD-bed' style input: unknown wards, odd bed text, extra dashes."""
+        s = "-".join([ward] + beds)
+        try:
+>           result = assign_ward_bed(s)
+                     ^^^^^^^^^^^^^^^^^^
+
+test_processor.py:110: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+allocation_code = 'ER'
+
+    def assign_ward_bed(allocation_code):
+>       ward, bed_str = allocation_code.strip().split('-')
+        ^^^^^^^^^^^^^
+E       ValueError: not enough values to unpack (expected 2, got 1)
+
+processor.py:17: ValueError
+
+During handling of the above exception, another exception occurred:
+
+    @FUZZ
+>   @given(st.sampled_from(["ER", "icu", "Gen", "PED", "XYZ", "", " ICU"]),
+                   ^^^
+           st.lists(number_text, min_size=0, max_size=3))
+
+test_processor.py:104: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+ward = 'ER', beds = []
+
+    @FUZZ
+    @given(st.sampled_from(["ER", "icu", "Gen", "PED", "XYZ", "", " ICU"]),
+           st.lists(number_text, min_size=0, max_size=3))
+    def test_assign_ward_bed_structured_no_crash(ward, beds):
+        """'WARD-bed' style input: unknown wards, odd bed text, extra dashes."""
+        s = "-".join([ward] + beds)
+        try:
+            result = assign_ward_bed(s)
+        except Exception as e:  # pylint: disable=broad-except
+>           assert False, f"assign_ward_bed crashed on {s!r} with: {e!r}"
+E           AssertionError: assign_ward_bed crashed on 'ER' with: ValueError('not enough values to unpack (expected 2, got 1)')
+E           assert False
+E           Failing test case: test_assign_ward_bed_structured_no_crash(
+E               ward='ER',
+E               beds=[],
+E           )
+
+test_processor.py:112: AssertionError
+=========================== short test summary info ============================
+FAILED test_processor.py::test_parse_vitals_summary_no_crash - ExceptionGroup...
+FAILED test_processor.py::test_compute_patient_bmi_safe - ExceptionGroup: Hyp...
+FAILED test_processor.py::test_assign_ward_bed_safe - ExceptionGroup: Hypothe...
+FAILED test_processor.py::test_parse_vitals_structured_no_crash - AssertionEr...
+FAILED test_processor.py::test_compute_patient_bmi_structured_no_crash - Exce...
+FAILED test_processor.py::test_assign_ward_bed_structured_no_crash - Assertio...
+========================= 6 failed, 3 passed in 1.04s ==========================
