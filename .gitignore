@@ -9,3 +9,6 @@ fleet.json
 .coverage
 .pytest_cache/
 htmlcov/
+
+# Lab 7: Hypothesis example database
+.hypothesis/
