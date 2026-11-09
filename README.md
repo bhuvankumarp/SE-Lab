@@ -4,7 +4,7 @@
 
 **Student Name:** BHUVAN KUMAR P | **SRN:** PES1UG24AM069
 
-Software Engineering lab work covering Labs 1–6, including completed experiments, source files and relevant documentation.
+Software Engineering lab work covering Labs 1–7, including completed experiments, source files and relevant documentation.
 
 ## Contents
 
@@ -16,6 +16,7 @@ Software Engineering lab work covering Labs 1–6, including completed experimen
 | [Lab-4](Lab-4) | VibeCoding: Catch the Falling Objects (assigned repo `SETAPESU26/07_catch_falling`) | Updated code, before/after videos, chat history |
 | [Lab-5](Lab-5) | Static Code Analysis: Campus Shuttle Tracker (assigned repo `SETAPESU26/L5_07_campus_shuttle`) | Cleaned code, before/after Pylint/Bandit/Flake8 reports, issue table, reflection |
 | [Lab-6](Lab-6) | Code and Branch Coverage: Hospital Triage Priority (assigned repo `SETAPESU26/L6_L7_07_hospital_traige_priority`) | Code and branch coverage test cases, coverage report screenshots |
+| [Lab-7](Lab-7) | Fuzz Testing: Hospital Triage Processor (assigned repo `SETAPESU26/L6_L7_07_hospital_traige_priority`) | Screenshots PDF, fixed `processor.py`, Hypothesis `test_processor.py` |
 
 Labs 1 to 3 cover **Problem Statement #14, Corporate Mental Wellness & Counseling Platform**: an anonymous counselling portal where employees check their stress levels, book confidential sessions with a licensed therapist and follow their own wellness indicators, without the employer learning who used it.
 
@@ -27,6 +28,7 @@ Labs 1 to 3 cover **Problem Statement #14, Corporate Mental Wellness & Counselin
 - **Lab 4:** fixed the collision bug in a Pygame game and added basket boundary handling, controlled spawning and a temporary speed boost.
 - **Lab 5:** analysed `shuttle_system.py` with Pylint, Bandit and Flake8 and fixed 14 documented issues (plus runtime crashes no tool flagged): Pylint 6.25 → 10.00/10, Bandit 2 → 0, Flake8 10 → 0.
 - **Lab 6:** wrote code coverage (12 tests) and branch coverage (37 tests) test cases for `hospital_triage_priority.py`: line coverage 47% → 100%, branch coverage 43% → 100%.
+- **Lab 7:** fuzzed `processor.py` with Hypothesis (6 of 9 tests failed on the buggy code) and fixed every crash found (None, missing parts, non-numeric values, division by zero, unknown wards): 9 of 9 tests pass.
 
 ## Tools and technologies
 
@@ -38,6 +40,7 @@ Labs 1 to 3 cover **Problem Statement #14, Corporate Mental Wellness & Counselin
 | Lab 4 | Python 3, Pygame 2, Claude Code (AI pair-programming) |
 | Lab 5 | Python 3, Pylint, Bandit, Flake8 |
 | Lab 6 | Python 3, pytest, Coverage.py |
+| Lab 7 | Python 3, pytest, Hypothesis |
 
 ## Navigating and running
 
